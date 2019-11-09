@@ -29,7 +29,7 @@ Data can be converted from/to:
 
 ## How to Run
 - Help command will display all available options: `java -cp simple-parquet-convertor.jar africa.absa.parquet.convertor.SimpleParquetConvertor --help`
-- Simple conversion between csv and parquet example: `java -cp ./simple-parquet-convertor-0.0.1-SNAPSHOT.jar africa.absa.parquet.convertor.SimpleParquetConvertor --source-format csv --source-path ./myDatasetCsv.csv --target-path ./myDatasetParquet --target-format parquet`
+- Simple conversion between csv and parquet example: `java -cp ./simple-parquet-convertor.jar africa.absa.parquet.convertor.SimpleParquetConvertor --source-format csv --source-path ./myDatasetCsv.csv --target-path ./myDatasetParquet --target-format parquet`
 
 ## Available Options
 - `--source-format`: **REQUIRED** Source data format. 
