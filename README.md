@@ -11,7 +11,6 @@ Currently the convertor supports:
 - ORC
 - JSON
 - Text
-These are the data formats supported by Spark SQL by default.
 
 ## Supported Storage Locations
 Data can be converted from/to:
