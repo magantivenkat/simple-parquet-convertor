@@ -6,18 +6,18 @@ Currently it's designed to run as a standalone java application, but it uses Apa
 
 ## Supported Data Formats
 Currently the convertor supports:
-    - Parquet
-    - CSV
-    - ORC
-    - JSON
-    - Text
+- Parquet
+- CSV
+- ORC
+- JSON
+- Text
 These are the data formats supported by Spark SQL by default.
 
 ## Supported Storage Locations
 Data can be converted from/to:
-    - Local file system
-    - HDFS
-    - S3
+- Local file system
+- HDFS
+- S3
 
 ## How to Build
 #### Build requirements:
@@ -25,7 +25,6 @@ Data can be converted from/to:
  - **Java 8**
 
 #### Build commands:
-
 - Without tests:  `mvn clean package -DskipTests `
 - With unit tests:  `mvn clean package`
 
