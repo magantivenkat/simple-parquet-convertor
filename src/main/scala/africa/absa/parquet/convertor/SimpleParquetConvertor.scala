@@ -71,6 +71,7 @@ object SimpleParquetConvertor {
       .option("quote", config.csvQuote)
       .option("escape", config.csvEscape)
       .option("comment", config.csvComment)
+      .option("delimiter", config.csvDelimiter)
   }
 
   private def applyCsvWriteOptions(dfw: DataFrameWriter[_], config: CmdConfig) = {

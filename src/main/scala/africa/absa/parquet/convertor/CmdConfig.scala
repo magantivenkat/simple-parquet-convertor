@@ -33,9 +33,11 @@ case class CmdConfig(
   inferSchema:    Boolean = true,
   csvHeader:      Boolean = true,
   csvQuote:       String  = "\"",
+  csvDelimiter:   String  = ",",
   csvEscape:      String  = "\\",
   charset:        String  = "UTF-8",
-  csvComment:     String  = "#")
+  csvComment:     String  = "#"
+)
 
 object CmdConfig {
 
@@ -62,44 +64,75 @@ object CmdConfig {
     private def getSupportedFormatsMessage = s"Supported formats are: $readableDataFormats"
     private def getSupportedProtocolsMessage = s"Supported protocols are: $readableProtocols"
 
-    opt[String]("source-format").required().action((value, config) =>
-      config.copy(sourceFormat = value)).text(s"[REQUIRED] Source data format. $getSupportedFormatsMessage").validate(format =>
-      if (CmdConfig.supportedFormats.contains(format)) success
-      else failure(s"$format is not a supported data format. $getSupportedFormatsMessage"))
+    opt[String]("source-format")
+      .required()
+      .action((value, config) => config.copy(sourceFormat = value))
+      .text(s"[REQUIRED] Source data format. $getSupportedFormatsMessage")
+      .validate(format =>
+        if (CmdConfig.supportedFormats.contains(format)) success
+        else failure(s"$format is not a supported data format. $getSupportedFormatsMessage"))
 
-    opt[String]("target-format").required().action((value, config) =>
-      config.copy(targetFormat = value)).text(s"[REQUIRED] Target data format. $getSupportedFormatsMessage").validate(format =>
-      if (CmdConfig.supportedFormats.contains(format)) success
-      else failure(s"$format is not a supported data format. $getSupportedFormatsMessage"))
+    opt[String]("target-format")
+      .required()
+      .action((value, config) => config.copy(targetFormat = value))
+      .text(s"[REQUIRED] Target data format. $getSupportedFormatsMessage")
+      .validate(format =>
+        if (CmdConfig.supportedFormats.contains(format)) success
+        else failure(s"$format is not a supported data format. $getSupportedFormatsMessage"))
 
-    opt[String]("source-path").required().action((value, config) =>
-      config.copy(sourcePath = value)).text(s"[REQUIRED] The path of source file/folder to be converted. $getSupportedProtocolsMessage")
+    opt[String]("source-path")
+      .required()
+      .action((value, config) => config.copy(sourcePath = value))
+      .text(s"[REQUIRED] The path of source file/folder to be converted. $getSupportedProtocolsMessage")
 
-    opt[String]("target-path").required().action((value, config) =>
-      config.copy(targetPath = value)).text(s"[REQUIRED] The path of target folder to save the converted data into. $getSupportedProtocolsMessage")
+    opt[String]("target-path")
+      .required()
+      .action((value, config) => config.copy(targetPath = value))
+      .text(s"[REQUIRED] The path of target folder to save the converted data into. $getSupportedProtocolsMessage")
 
-    opt[Boolean]("infer-schema").optional().action((value, config) =>
-      config.copy(inferSchema = value)).text("[OPTIONAL] This options attempts to infer strongly typed schema from (un/looser)-typed data sources")
+    opt[Boolean]("infer-schema")
+      .optional()
+      .action((value, config) => config.copy(inferSchema = value))
+      .text("[OPTIONAL] This options attempts to infer strongly typed schema from (un/looser)-typed data sources")
 
-    opt[Boolean]("csv-header").optional().action((value, config) =>
-      config.copy(csvHeader = value)).text("[OPTIONAL] This options specifies whether CSV files (for read and write) have headers")
+    opt[Boolean]("csv-header")
+      .optional()
+      .action((value, config) => config.copy(csvHeader = value))
+      .text("[OPTIONAL] This options specifies whether CSV files (for read and write) have headers")
 
-    opt[String]("csv-quote").optional().action((value, config) =>
-      config.copy(csvQuote = value)).text("[OPTIONAL] This options specifies the CSV quote character. Default is \"")
+    opt[String]("csv-quote")
+      .optional()
+      .action((value, config) => config.copy(csvQuote = value))
+      .text("[OPTIONAL] This options specifies the CSV quote character. Default is \"")
 
-    opt[String]("csv-escape").optional().action((value, config) =>
-      config.copy(csvEscape = value)).text("[OPTIONAL] This options specifies the CSV escape character. Default is \\")
+    opt[String]("csv-delimiter")
+      .optional()
+      .action((value, config) => config.copy(csvDelimiter = value))
+      .text("[OPTIONAL] This options specifies the XSV delimiter character. Default is ,")
 
-    opt[String]("csv-comment").optional().action((value, config) =>
-      config.copy(csvComment = value)).text("[OPTIONAL] This options specifies the CSV comment character. Default is #")
+    opt[String]("csv-escape")
+      .optional()
+      .action((value, config) => config.copy(csvEscape = value))
+      .text("[OPTIONAL] This options specifies the CSV escape character. Default is \\")
 
-    opt[String]("charset").optional().action((value, config) =>
-      config.copy(charset = value)).text("[OPTIONAL] This options specifies the charset for text based data formats. Default is UTF-8")
+    opt[String]("csv-comment")
+      .optional()
+      .action((value, config) => config.copy(csvComment = value))
+      .text("[OPTIONAL] This options specifies the CSV comment character. Default is #")
 
-    opt[Int]("num-partitions").optional().action((value, config) =>
-      config.copy(numPartitions = value)).text("[OPTIONAL] ADVANCED: Number of partitions (files) produced. Higher the number, higher the parallelizm achievable. Causes shuffling.")
+    opt[String]("charset")
+      .optional()
+      .action((value, config) => config.copy(charset = value))
+      .text("[OPTIONAL] This options specifies the charset for text based data formats. Default is UTF-8")
 
-    opt[Int]("num-driver-cores").optional().action((value, config) =>
-      config.copy(numDriverCores = value)).text("[OPTIONAL] Number of CPU cores to be used for the conversion (driver side)")
+    opt[Int]("num-partitions")
+      .optional()
+      .action((value, config) => config.copy(numPartitions = value))
+      .text("[OPTIONAL] ADVANCED: Number of partitions (files) produced. Higher the number, higher the parallelizm achievable. Causes shuffling.")
+
+    opt[Int]("num-driver-cores")
+      .optional()
+      .action((value, config) => config.copy(numDriverCores = value))
+      .text("[OPTIONAL] Number of CPU cores to be used for the conversion (driver side)")
   }
 }
