@@ -39,6 +39,7 @@ Data can be converted from/to:
 - `--infer-schema`: **OPTIONAL** This options attempts to infer strongly typed schema from (un/loose)-typed data sources.
 - `--csv-header`: **OPTIONAL** This options specifies whether CSV files (for read and write) have headers.
 - `--csv-quote`: **OPTIONAL** This options specifies the CSV quote character. Default is "
+- `--csv-delimiter`: **OPTIONAL** This options specifies the XSV delimiter character. Default is ,
 - `--csv-escape`: **OPTIONAL** This options specifies the CSV escape character. Default is \
 - `--csv-comment`: **OPTIONAL** This options specifies the CSV comment character. Default is #
 - `--charset`: **OPTIONAL** This options specifies the charset for text based data formats. Default is UTF-8.
